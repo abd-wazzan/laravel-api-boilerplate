@@ -11,7 +11,7 @@ class TestingSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         // testing seeders.
         $this->call([

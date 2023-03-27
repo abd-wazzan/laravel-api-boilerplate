@@ -28,15 +28,15 @@ class DatabaseSeeder extends Seeder
 
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Disable ForeignKey Constraints
-    |--------------------------------------------------------------------------
-    |
-    | Disabling foreign key constraints give flexibility to your testing seeders, but
-    | it may result data inconsistency. so be careful if you decide to disable them.
-    |
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Disable ForeignKey Constraints
+        |--------------------------------------------------------------------------
+        |
+        | Disabling foreign key constraints give flexibility to your testing seeders, but
+        | it may result data inconsistency. so be careful if you decide to disable them.
+        |
+        */
         if (app()->environment(['local', 'staging', 'testing'])) {
 //            Schema::disableForeignKeyConstraints();
             $this->call(TestingSeeder::class);

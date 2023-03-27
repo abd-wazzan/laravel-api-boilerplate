@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         User::query()->firstOrCreate([
             'email' => 'admin@project.com',
