@@ -10,7 +10,8 @@
         "laravel/framework": "^10.0",
         "laravel/passport": "^11.8",
         "laravel/tinker": "^2.8",
-        "lorisleiva/laravel-actions": "^2.5"
+        "lorisleiva/laravel-actions": "^2.5",
+        "spatie/laravel-data": "^3.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
