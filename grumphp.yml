@@ -1,0 +1,12 @@
+grumphp:
+  tasks:
+    phpcs:
+      standard: PSR12
+      ignore_patterns: [./public/*, ./resources/*, ./tests/pest.php, ./database/migrations/* ./config/*, ./bootstrap/*]
+  ignore_unstaged_changes: true
+  parallel:
+    enabled: true
+    max_workers: 32
+  fixer:
+    enabled: true
+    fix_by_default: false
