@@ -38,7 +38,7 @@
     "strict_comparison": true,
     "ternary_to_null_coalescing": true,
     "trim_array_spaces": true,
-    "use_arrow_functions": true,
+    "use_arrow_functions": false,
     "void_return": true,
     "yoda_style": true
   }
