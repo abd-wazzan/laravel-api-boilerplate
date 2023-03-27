@@ -3,20 +3,44 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Client\UserSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Seeding Strategy
+    |--------------------------------------------------------------------------
+    |
+    | In order to maintain your seeders working even after production, try to check for seeded data
+    | existence in the database before seeding it. This can help you in development to avoid
+    | a database refreshing when seeding new data and will also prevent duplicated data.
+    |
+    */
+
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // production seeders.
+        $this->call([
+            UserSeeder::class,
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Disable ForeignKey Constraints
+    |--------------------------------------------------------------------------
+    |
+    | Disabling foreign key constraints give flexibility to your testing seeders, but
+    | it may result data inconsistency. so be careful if you decide to disable them.
+    |
+    */
+        if (app()->environment(['local', 'staging', 'testing'])) {
+//            Schema::disableForeignKeyConstraints();
+            $this->call(TestingSeeder::class);
+//            Schema::enableForeignKeyConstraints();
+        }
     }
 }
