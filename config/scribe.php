@@ -211,13 +211,13 @@ return [
         /*
          * Set this to true if any endpoints in your API use authentication.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          * Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
          * You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
          */
-        'default' => false,
+        'default' => true,
 
         /*
          * Where is the auth value meant to be sent in a request?
@@ -228,7 +228,7 @@ return [
         /*
          * The name of the auth parameter (eg token, key, apiKey) or header (eg Authorization, Api-Key).
          */
-        'name' => 'key',
+        'name' => 'Authorization',
 
         /*
          * The value of the parameter to be used by Scribe to authenticate response calls.
@@ -255,6 +255,18 @@ return [
      */
     'intro_text' => <<<INTRO
 This documentation aims to provide all the information you need to work with our API.
+
+- The API is currently in <b>beta</b>. If you find any bugs, please report them on the team channel.
+- If you have any questions, please feel free to contact us on the team channel.
+- We are actively working on improving the API and adding new features.
+- The documentation is generated from the source code.
+- The API is available at <a>{your staging URL}</a>.
+- You can call endpoints using mock server that will provide you with <b>success</b> response : <a>{Your Mock Server URL}</a>
+- 
+- Status code <b>500</b> is used for internal server errors.
+- Status code <b>405</b> is used for wrong method call.
+- Status code <b>401</b> is used for unauthorized requests and can occur in requests that require <b>authentication</b> only.
+- Status code <b>429</b> is used for too many request attempts.
 
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
