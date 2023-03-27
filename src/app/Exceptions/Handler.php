@@ -2,11 +2,15 @@
 
 namespace App\Exceptions;
 
+use App\Traits\ApiResponseHelper;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponseHelper;
+
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -43,5 +47,14 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e): void {
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof ValidationException && $request->wantsJson()) {
+            return $this->unprocessableResponse($exception->errors());
+        }
+
+        return parent::render($request, $exception);
     }
 }
