@@ -6,7 +6,7 @@ return [
      * is an array, it will try to convert from the first format that works,
      * and will serialize dates using the first format from the array.
      */
-    'date_format' => DATE_ATOM,
+    'date_format' => [DATE_ATOM, "Y-m-d H:i", "Y-m-d H", "Y-m-d"],
 
     /*
      * Global transformers will take complex types and transform them into simple
