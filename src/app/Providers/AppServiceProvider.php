@@ -28,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom([
             database_path() . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR . 'Client',
         ]);
+
+        if ($this->app->isLocal()) {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 }
