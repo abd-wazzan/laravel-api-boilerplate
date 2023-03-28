@@ -1,66 +1,295 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
+<h3 align="center">Laravel API boilerplate</h3>
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  A <a href="https://laravel.com" target="_blank">Laravel</a> project with a Domain-Driven Design (DDD) structure, basic configuration, and commonly used packages pre-installed  and configured, to help you start building your next big application.
 </p>
 
-## About Laravel
+# Requirements
+- PHP ^8.1
+- Composer ^2.2
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Installation
+```bash
+composer create-project abd-wazzan/laravel-api-boilerplate api-app
+```
+Install dependencies
+```bash
+cd api-app
+composer install
+```
+Setup .env file
+```bash
+cp .env.example .env
+```
+Generate the application key
+```bash
+php artisan key:generate 
+```
+Run Locally
+```bash
+php artisan serve
+```
+# Installed Packages
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+General:
+- [Passport](https://laravel.com/docs/10.x/passport)
+- [Laravel Actions](https://laravelactions.com)
+- [Laravel Data](https://spatie.be/docs/laravel-data/v3/introduction)
+- [Laravel Query Builder](https://spatie.be/index.php/docs/laravel-query-builder/v5/introduction)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Development:
+- [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper)
+- [Scribe API documentation tool](https://scribe.knuckles.wtf/laravel)
+- [Laravel Telescope](https://laravel.com/docs/10.x/telescope)
+- [Pest Testing Framework](https://pestphp.com/)
+- [Grum PHP](https://github.com/phpro/grumphp)
+- [Security Advisor](https://github.com/Roave/SecurityAdvisories)
 
-## Learning Laravel
+# Features
+- [DDD (Domain Driven Design)](#ddd)
+- [API Response Helper](#api-response-helper)
+- [Scribe Api Tags](#scribe-api-tags)
+- [Global Helper](#global-helper)
+- [Migration Structure](#migration-structure)
+- [Polymorphic Mapping](#polymorphic-mapping)
+- [Database Seeders](#database-seeders)
+- [Shared Directory](#shared-directory)
+- [Enable Model Strict Mode](https://laravel.com/docs/10.x/eloquent#configuring-eloquent-strictness)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## DDD
+Software development approach that tries to bring the business language and the source code as close as possible.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+This structure is inspired by [LARAVEL BEYOND CRUD](https://laravel-beyond-crud.com/).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Files Structure
+Domain Layer Example:
 
-## Laravel Sponsors
+    src/Domain/Invoices/
+    ├── Actions
+    ├── QueryBuilders
+    ├── Collections
+    ├── Data
+    ├── Events
+    ├── Exceptions
+    ├── Listeners
+    ├── Models
+    ├── Rules
+    └── States
+    src/Domain/Products/
+    ├── Actions
+    └── .....
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Application Layer Example:
 
-### Premium Partners
+    The REST API application:
+    src/App/Api/
+    ├── Products
+        ├── Controllers
+        ├── Middlewares
+        ├── Requests
+        ├── Queries
+        ├── Filters
+        └── Resources
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    The Console application
+    src/App/Console/
+    └── Commands
 
-## Contributing
+    The admin HTTP application:
+    src/App/Admin/
+    ├── Products
+        ├── Controllers
+        ├── Middlewares
+        ├── Requests
+        ├── Resources
+        ├── Queries
+        ├── Filters
+        └── ViewModels
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Dependency Illustration
+[![](https://mermaid.ink/img/pako:eNptkV9PwjAUxb9KcxMSTAZh_xjswQRWfJKggC8yHup2lcVtnV2XiJTvbulEMPGtved3em7vPUDCU4QQ3gSrdmRN45IQMtk81Si2pNe7VUv8aLCWiky7ES-l4HmOgkwSmfHyxtBTw9H1QpGoS3nBsvKPHhn9gQlWoEShCO3OdWjeqvSkErV6vCd1IrJKJ802lEn2wmrcGmTWIo8Nij0RWDe5hui1e_lTjC6BRC0qFOzUxq9neunXeCpe1qjI5NrV_sNUOp0ze4cy2RHTgKJnjf7Tlk4ACwoUegqpHuvhBMcgd1hgDKE-pky8xxCXR82xRvLVvkwglKJBC5oqZRJpxvQ2CghfWV7rKqaZ5GLe7smsy4KKlc-cF2ejvkJ4gE8IHc_v-844GNuuZ49tx3Yt2EM4CvqeF7gjNxgNfN-xg6MFX-aBQX_oBY4_9H3XDtzB0HeO333zodw?type=png)](https://mermaid.live/edit#pako:eNptkV9PwjAUxb9KcxMSTAZh_xjswQRWfJKggC8yHup2lcVtnV2XiJTvbulEMPGtved3em7vPUDCU4QQ3gSrdmRN45IQMtk81Si2pNe7VUv8aLCWiky7ES-l4HmOgkwSmfHyxtBTw9H1QpGoS3nBsvKPHhn9gQlWoEShCO3OdWjeqvSkErV6vCd1IrJKJ802lEn2wmrcGmTWIo8Nij0RWDe5hui1e_lTjC6BRC0qFOzUxq9neunXeCpe1qjI5NrV_sNUOp0ze4cy2RHTgKJnjf7Tlk4ACwoUegqpHuvhBMcgd1hgDKE-pky8xxCXR82xRvLVvkwglKJBC5oqZRJpxvQ2CghfWV7rKqaZ5GLe7smsy4KKlc-cF2ejvkJ4gE8IHc_v-844GNuuZ49tx3Yt2EM4CvqeF7gjNxgNfN-xg6MFX-aBQX_oBY4_9H3XDtzB0HeO333zodw)
 
-## Code of Conduct
+### Resources
+- [Domain Oriented Laravel](https://stitcher.io/blog/laravel-beyond-crud-01-domain-oriented-laravel)
+- [Working With Data](https://stitcher.io/blog/laravel-beyond-crud-02-working-with-data)
+- [Actions](https://stitcher.io/blog/laravel-beyond-crud-03-actions)
+- [Models](https://stitcher.io/blog/laravel-beyond-crud-04-models)
+- [States](https://stitcher.io/blog/laravel-beyond-crud-05-states)
+- [Managing Domains](https://stitcher.io/blog/laravel-beyond-crud-06-managing-domains)
+- [Application Layer](https://stitcher.io/blog/laravel-beyond-crud-07-entering-the-application-layer)
+- [View Models](https://stitcher.io/blog/laravel-beyond-crud-08-view-models)
+- [Test Factories](https://stitcher.io/blog/laravel-beyond-crud-09-test-factories)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## API Response Helper
+A simple trait allowing consistent API responses throughout your Laravel application.
 
-## Security Vulnerabilities
+### Available methods:
+| Method                    | Status |
+|:--------------------------|:-------|
+| `okResponse()`            | `200`  |
+| `createdResponse()`       | `201`  |
+| `failedResponse()`        | `400`  |
+| `unauthorizedResponse()`  | `401`  |
+| `forbiddenResponse()`     | `403`  |
+| `notFoundResponse()`      | `404`  |
+| `unprocessableResponse()` | `422`  |
+| `serverErrorResponse()`   | `500`  |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Usages Example:
+```php
+<?php
 
-## License
+namespace App\Http\Api\Controllers;
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+use App\Traits\ApiResponseHelpers;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controller;
+
+class ProductController extends Controller
+{
+    use ApiResponseHelper;
+
+    public function index(): JsonResponse
+    {
+        return $this->okResponse();
+    }
+}
+```
+## Scribe Api Tags
+Additional scribe tags that match the ApiResponseHelper responses.
+
+### Available Response tags:
+| Tag                      | Status |
+|:-------------------------|:-------|
+| `@okResponse`            | `200`  |
+| `@createdResponse`       | `201`  |
+| `@failedResponse`        | `400`  |
+| `@unauthorizedResponse`  | `401`  |
+| `@forbiddenResponse`     | `403`  |
+| `@notFoundResponse`      | `404`  |
+| `@unprocessableResponse` | `422`  |
+| `@serverErrorResponse`   | `500`  |
+
+### Other Available tag:
+| Tag               | Description                                                      |
+|:------------------|:-----------------------------------------------------------------|
+| `@usesPagination` | will add `page[number]` and `page[size]` to the query parameters |
+
+### Usages Example:
+```php
+<?php
+
+namespace App\Http\Api\Controllers;
+
+use App\Helpers\ApiController;
+use App\Traits\ApiResponseHelpers;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controller;
+
+/**
+ * Class CategoryController
+ * @group Category
+ */
+class CategoryController extends Controller
+{
+    use ApiResponseHelper;
+
+    /**
+     * Get Categories
+     *
+     * this request is used to get all categories.
+     *
+     * @queryParam filter[name]
+     *
+     * @usesPagination
+     * @failedResponse
+     * @forbiddenResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
+     */
+    public function index(): Response
+    {
+        return CategoryResource::collection($categories->all());
+    }
+
+}
+```
+
+## Global Helper
+Simple php file that contains you global functions, which you can find it in `./src/shared/Helpers/global.php`.
+
+## Migration Structure
+In order to group your migration files by their domains, you can create additional migration directories
+and load them in the `AppServiceProvider` using `loadMigrationsFrom` function:
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        $this->loadMigrationsFrom([
+            database_path().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR.'Client',
+        ]);
+    }
+}
+```
+
+## Polymorphic Mapping
+Please read this [article](https://laravel-news.com/enforcing-morph-maps-in-laravel) first to identify the problem.
+
+In order to achieve the morph mapping, we created the `MorphEnum` that will contain each model morph key and then use it
+in `Relation::morphMap` function as shown in the example:
+```php
+<?php
+
+namespace Shared\Enums;
+
+enum MorphEnum: string
+{
+    case USER = 'user';
+}
+```
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Shared\Enums\MorphEnum;
+use Domain\Client\Models\User;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        Relation::morphMap([
+            MorphEnum::USER->value => User::class,
+        ]);
+    }
+}
+```
+
+## Database Seeders
+We generally have two types of seeded data:
+
+- Initial data: the project cannot function without it. For example, countries table data, and these data usually come
+  from datasets.
+- Fake data: for testing purposes that can fill up any table instead of manually inserting row by row, this data is
+  usually generated by factories.
+
+In order to prevent the fake data from being seeded in the production environment, we created a new seeder class
+called `TestingSeeder.php` which will contain all the fake data seeders and will only run in a non-production
+environment. The normal seeders will stay in `DatabaseSeeder.php`.
+
+## Shared Directory
+The `src/shared/` directory is used for helper, traits, enums .... that are going to be used by the application and the domain.
+
+# Feedback
+I will be happy to hear your feedback! If you have any recommendation or suggestion, please send an e-mail
+to [Mail](mailto:abdulrahmanwazzan.pro@gmail.com).
