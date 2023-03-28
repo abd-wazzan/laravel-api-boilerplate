@@ -16,92 +16,109 @@ trait ApiResponseHelper
 {
     public function okResponse(
         array|Arrayable|JsonSerializable|string|null $data = [],
-        ?string $message = 'Operation succeeded.',
+        ?string $message = null,
         array $headers = []
     ): JsonResponse {
+        $status = Response::HTTP_OK;
         return $this->jsonResponse(
-            ['message' => $message, 'data' => $this->morphToArray($data)],
-            Response::HTTP_OK,
+            [
+                'message' => $message ?? $this->morphStatusMessage($status),
+                'data' => $this->morphToArray($data)
+            ],
+            $status,
             $headers
         );
     }
 
     public function createdResponse(
         array|Arrayable|JsonSerializable|string|null $data = [],
-        ?string $message = 'Created.',
+        ?string $message = null,
         array $headers = []
     ): JsonResponse {
+        $status = Response::HTTP_CREATED;
         return $this->jsonResponse(
-            ['message' => $message, 'data' => $this->morphToArray($data)],
-            Response::HTTP_OK,
+            [
+                'message' => $message ?? $this->morphStatusMessage($status),
+                'data' => $this->morphToArray($data)
+            ],
+            $status,
             $headers
         );
     }
 
     public function failedResponse(
-        ?string $message = 'Operation failed.',
+        ?string $message = null,
         array $headers = []
     ): JsonResponse {
+        $status = Response::HTTP_BAD_REQUEST;
         return $this->jsonResponse(
-            ['message' => $message],
-            Response::HTTP_BAD_REQUEST,
+            ['message' => $message ?? $this->morphStatusMessage($status)],
+            $status,
             $headers
         );
     }
 
     public function unprocessableResponse(
         Throwable|array|Arrayable|JsonSerializable|string|null $errors = [],
-        ?string $message = 'Validation failed.',
+        ?string $message = null,
         array $headers = []
     ): JsonResponse {
+        $status = Response::HTTP_UNPROCESSABLE_ENTITY;
         return $this->jsonResponse(
-            ['message' => $message, 'errors' => $this->morphValidationErrors($errors)],
-            Response::HTTP_UNPROCESSABLE_ENTITY,
+            [
+                'message' => $message ?? $this->morphStatusMessage($status),
+                'errors' => $this->morphValidationErrors($errors)
+            ],
+            $status,
             $headers
         );
     }
 
 
     public function notFoundResponse(
-        ?string $message = 'Not Found.',
+        ?string $message = null,
         array $headers = []
     ): JsonResponse {
+        $status = Response::HTTP_NOT_FOUND;
         return $this->jsonResponse(
-            ['message' => $message],
-            Response::HTTP_NOT_FOUND,
+            ['message' => $message ?? $this->morphStatusMessage($status)],
+            $status,
             $headers
         );
     }
 
     public function unauthorizedResponse(
-        ?string $message = 'Unauthorized.',
+        ?string $message = null,
         array $headers = []
     ): JsonResponse {
+        $status = Response::HTTP_UNAUTHORIZED;
         return $this->jsonResponse(
-            ['message' => $message],
-            Response::HTTP_UNAUTHORIZED,
+            ['message' => $message ?? $this->morphStatusMessage($status)],
+            $status,
             $headers
         );
     }
 
     public function forbiddenResponse(
-        ?string $message = 'Forbidden.',
+        ?string $message = null,
         array $headers = []
     ): JsonResponse {
+        $status = Response::HTTP_FORBIDDEN;
         return $this->jsonResponse(
-            ['message' => $message],
-            Response::HTTP_FORBIDDEN,
+            ['message' => $message ?? $this->morphStatusMessage($status)],
+            $status,
             $headers
         );
     }
 
     public function serverErrorResponse(
-        ?string $message = 'Internal Server Error.',
+        ?string $message = null,
         array $headers = []
     ): JsonResponse {
+        $status = Response::HTTP_INTERNAL_SERVER_ERROR;
         return $this->jsonResponse(
-            ['message' => $message],
-            Response::HTTP_INTERNAL_SERVER_ERROR,
+            ['message' => $message ?? $this->morphStatusMessage($status)],
+            $status,
             $headers
         );
     }
@@ -136,5 +153,10 @@ trait ApiResponseHelper
     private function morphValidationErrors(Throwable|array|Arrayable|JsonSerializable|string|null $errors = []): array
     {
         return $errors instanceof Throwable ? [$errors->getMessage()] : $this->morphToArray($errors);
+    }
+
+    private function morphStatusMessage(int $statusCode): string
+    {
+        return Response::$statusTexts[$statusCode] ?? 'unknown status';
     }
 }
