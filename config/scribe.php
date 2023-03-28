@@ -405,6 +405,7 @@ INTRO
             Strategies\QueryParameters\GetFromInlineValidator::class,
             Strategies\QueryParameters\GetFromQueryParamAttribute::class,
             Strategies\QueryParameters\GetFromQueryParamTag::class,
+            \App\Helpers\DocStrategies\HasPaginationParameters::class
         ],
         'headers' => [
             Strategies\Headers\GetFromRouteRules::class,
