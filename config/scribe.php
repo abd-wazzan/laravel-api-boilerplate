@@ -424,6 +424,7 @@ INTRO
             Strategies\Responses\UseResponseTag::class,
             Strategies\Responses\UseResponseFileTag::class,
             Strategies\Responses\ResponseCalls::class,
+            \App\Helpers\DocStrategies\ApiResponseTags::class,
         ],
         'responseFields' => [
             Strategies\ResponseFields\GetFromResponseFieldAttribute::class,
