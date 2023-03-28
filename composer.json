@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "abd-wazzan/laravel-api-boilerplate",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "A Laravel project with a Domain-Driven Design (DDD) structure, basic configuration, and commonly used packages pre-installed, directed towards building APIs.",
+    "keywords": ["boilerplate", "laravel"],
     "license": "MIT",
     "require": {
         "php": "^8.1",
