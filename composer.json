@@ -11,7 +11,8 @@
         "laravel/passport": "^11.8",
         "laravel/tinker": "^2.8",
         "lorisleiva/laravel-actions": "^2.5",
-        "spatie/laravel-data": "^3.2"
+        "spatie/laravel-data": "^3.2",
+        "spatie/laravel-query-builder": "^5.2"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
