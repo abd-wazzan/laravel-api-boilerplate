@@ -54,6 +54,7 @@ Development:
 - [Database Seeders](#database-seeders)
 - [Shared Directory](#shared-directory)
 - [Enable Model Strict Mode](https://laravel.com/docs/10.x/eloquent#configuring-eloquent-strictness)
+- [Pest testing framework](https://pestphp.com/docs/installation)
 
 ## DDD
 Software development approach that tries to bring the business language and the source code as close as possible.
