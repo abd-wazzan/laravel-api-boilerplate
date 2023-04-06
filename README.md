@@ -1,7 +1,7 @@
 <br />
 <br />
 <p align="center">
-<img width="589" src="https://user-images.githubusercontent.com/46269541/230351628-f3eb6682-3799-42d9-8e7a-9ab918906f2e.png" alt="Laravel API Boilerplate">
+<img src="https://user-images.githubusercontent.com/46269541/230351628-f3eb6682-3799-42d9-8e7a-9ab918906f2e.png" alt="Laravel API Boilerplate">
 </p>
 <br />
 <p align="center">
