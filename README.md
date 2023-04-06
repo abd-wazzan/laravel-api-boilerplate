@@ -1,3 +1,4 @@
+![Artboard – 4](https://user-images.githubusercontent.com/46269541/230349778-4f184048-ae67-4ceb-8b76-3033d535c0c8.png)
 <h3 align="center">Laravel API boilerplate</h3>
 <p align="center">
   A <a href="https://laravel.com" target="_blank">Laravel</a> project with a Domain-Driven Design (DDD) structure, basic configuration, and commonly used packages pre-installed  and configured, to help you start building your next big application.
