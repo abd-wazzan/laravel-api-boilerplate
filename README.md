@@ -1,5 +1,9 @@
-![Artboard – 6](https://user-images.githubusercontent.com/46269541/230350600-5f40d186-af23-439d-8e39-797ff3aae14b.png)
-
+<br />
+<br />
+<p align="center">
+<img width="589" src="https://user-images.githubusercontent.com/46269541/230351628-f3eb6682-3799-42d9-8e7a-9ab918906f2e.png" alt="Laravel API Boilerplate">
+</p>
+<br />
 <p align="center">
   A <a href="https://laravel.com" target="_blank">Laravel</a> project with a Domain-Driven Design (DDD) structure, basic configuration, and commonly used packages pre-installed  and configured, to help you start building your next big application.
 </p>
